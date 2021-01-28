@@ -1,0 +1,14 @@
+.el-table th {
+  background: #f7f8fa;
+  color: #323c47;
+}
+.el-table th, .el-table td {
+  height: 32px;
+  line-height: 32px;
+  padding: 0;
+}
+.el-button {
+  padding: 0 8px;
+  line-height: 20px;
+  height: 20px;
+}
