@@ -1,5 +1,6 @@
 import axios from "axios";
-const env = process.env.NODE_ENV
+// const env = process.env.NODE_ENV;
+import { getCookie } from "@common";
 axios.interceptors.response.use(
   res => {
     // Resolve
@@ -9,44 +10,44 @@ axios.interceptors.response.use(
     //   data.config = res.config
     //   return Promise.reject(data)
     // }
-    return res
+    return res;
   },
   err => {
     // Reject
     if (err && err.response) {
       // 接口异常
-      err.url = (err.response.request && err.response.request.responseURL) || ''
+      err.url =
+        (err.response.request && err.response.request.responseURL) || "";
       // const errCode = err.response.status
-      const data = err.response.data
-      err.message = (data && (data.msg || data.message)) || err.message
-      if (err.message.includes('token') &&
-        process.env.NODE_ENV !== 'development'
+      const data = err.response.data;
+      err.message = (data && (data.msg || data.message)) || err.message;
+      if (
+        err.message.includes("token") &&
+        process.env.NODE_ENV !== "development"
       ) {
         // token失效
-        const auth = Common.getCookie('INNER_AUTHENTICATION')
-        let token
+        const auth = getCookie("INNER_AUTHENTICATION");
+        let token;
         try {
-          token = auth && atob(auth)
+          token = auth && atob(auth);
         } catch (e) {
-          token = null
+          token = null;
         }
-        if (
-          !token ||
-          err.message.includes('token')
-        ) {
+        if (!token || err.message.includes("token")) {
           // 关键字 --|||
-          err.entry = true
+          err.entry = true;
         } else {
-          err.reload = true
+          err.reload = true;
         }
       }
-      err.message.includes('cookie[INNER_AUTHENTICATION]') &&
-        process.env.NODE_ENV !== 'development' &&
-        (err.entry = true)
+      err.message.includes("cookie[INNER_AUTHENTICATION]") &&
+        process.env.NODE_ENV !== "development" &&
+        (err.entry = true);
     } else {
       // xhr异常
-      process.env.NODE_ENV !== 'development' && (err.reload = true) // 尝试刷新当前页
+      process.env.NODE_ENV !== "development" && (err.reload = true); // 尝试刷新当前页
     }
-    return Promise.reject(err)
-  },
-)
+    return Promise.reject(err);
+  }
+);
+export default axios;
