@@ -2,16 +2,16 @@
   <div id="app">
     <el-config-provider :locale="locale">
       <NavMenu />
-      <router-view class="router-view"/>
+      <router-view class="router-view" />
     </el-config-provider>
   </div>
 </template>
 
 <script setup>
 import { ElConfigProvider } from "element-plus";
-import NavMenu from '@components/NavMenu'
+import NavMenu from "@components/NavMenu";
 import zhCn from "element-plus/lib/locale/lang/zh-cn";
-  const locale = zhCn
+const locale = zhCn;
 </script>
 
 <style>

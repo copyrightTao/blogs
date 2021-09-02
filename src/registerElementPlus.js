@@ -22,7 +22,7 @@ import {
   ElPagination,
   ElMenu,
   ElMenuItem,
-  ElAvatar,
+  ElAvatar
 } from "element-plus";
 // import 'element-plus/dist/index.css'
 // import lang from "element-plus/lib/locale/lang/zh-cn";
@@ -55,7 +55,7 @@ const components = [
   ElPagination,
   ElMenu,
   ElMenuItem,
-  ElAvatar,
+  ElAvatar
 ];
 const plugins = [ElLoading, ElMessage, ElMessageBox];
 const elementOption = {

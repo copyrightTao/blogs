@@ -23,6 +23,7 @@
         >
         </el-date-picker>
       </el-form-item>
+      <el-button type="primary">搜索</el-button>
     </el-form>
     <el-table :data="dataList">
       <el-table-column prop="title" label="标题"></el-table-column>
@@ -32,6 +33,7 @@
         <template #default="scope">
           <el-button @click="delLine(scope.$index)">删除</el-button>
           <el-button @click="detail(scope.row)">详情</el-button>
+          <el-button @click="editBlog(scope.row)">编辑</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -83,6 +85,14 @@ const router = useRouter();
 const detail = ({ id }) => {
   router.push({
     name: "Detail",
+    query: {
+      id
+    }
+  });
+};
+const editBlog = ({ id }) => {
+  router.push({
+    name: "AddBlog",
     query: {
       id
     }

@@ -90,6 +90,8 @@ module.exports = {
   },
   devServer: {
     hotOnly: true, // 热更新
+    compress: true,
+    disableHostCheck: true,
     proxy: {
       "/api": {
         target: "http://localhost:3000", // 你要请求的后端接口ip+port
